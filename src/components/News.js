@@ -1503,15 +1503,17 @@ export class News extends Component {
         <h1>Please Visit Our Top News Headlines</h1>
         <div className="row">
           {this.state.articles.map((ele) => {
-            console.log(ele);
+            return (
+              <div className="col-md-4" key={ele.url}>
+                <NewsIntem
+                  title={ele.title.slice(0, 45)}
+                  description={ele.description.slice(0, 88)}
+                  imgurl={ele.urlToImage}
+                  newsurl={ele.url}
+                />
+              </div>
+            );
           })}
-          <div className="col-md-4">
-            <NewsIntem
-              title="First Title"
-              description="This is the first headline news"
-              imgurl="https://biztoc.com/cdn/950/og.png"
-            />
-          </div>
         </div>
       </div>
     );

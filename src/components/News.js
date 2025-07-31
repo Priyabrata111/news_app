@@ -1502,23 +1502,14 @@ export class News extends Component {
       <div className="container my-3">
         <h1>Please Visit Our Top News Headlines</h1>
         <div className="row">
+          {this.state.articles.map((ele) => {
+            console.log(ele);
+          })}
           <div className="col-md-4">
             <NewsIntem
               title="First Title"
               description="This is the first headline news"
               imgurl="https://biztoc.com/cdn/950/og.png"
-            />
-          </div>
-          <div className="col-md-4">
-            <NewsIntem
-              title="Second Title"
-              description="This is the second headline news"
-            />
-          </div>
-          <div className="col-md-4">
-            <NewsIntem
-              title="Third Title"
-              description="This is the third headline news"
             />
           </div>
         </div>

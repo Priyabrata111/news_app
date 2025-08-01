@@ -1477,21 +1477,6 @@ export class News extends Component {
           content:
             "{ window.open(this.href, '_blank'); }, 200); return false;\"&gt;Why did Novo Nordisk shares plunge? { window.open(this.href, '_blank'); }, 200); return false;\"&gt;How will US-EU trade deal affect tari… [+724 chars]",
         },
-        {
-          source: {
-            id: null,
-            name: "Biztoc.com",
-          },
-          author: "politico.com",
-          title:
-            "Mamdani’s rent freeze promise could run into stark financial reality",
-          description: "",
-          url: "https://biztoc.com/x/51e9e352bbb5de4c",
-          urlToImage: "https://biztoc.com/cdn/950/og.png",
-          publishedAt: "2025-07-29T12:51:10Z",
-          content:
-            "{ window.open(this.href, '_blank'); }, 200); return false;\"&gt;Why did Novo Nordisk shares plunge? { window.open(this.href, '_blank'); }, 200); return false;\"&gt;How will US-EU trade deal affect tari… [+726 chars]",
-        },
       ],
       loading: false,
     };

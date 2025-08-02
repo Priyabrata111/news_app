@@ -1462,21 +1462,6 @@ export class News extends Component {
           content:
             "{ window.open(this.href, '_blank'); }, 200); return false;\"&gt;Why did Novo Nordisk shares plunge? { window.open(this.href, '_blank'); }, 200); return false;\"&gt;How will US-EU trade deal affect tari… [+716 chars]",
         },
-        {
-          source: {
-            id: null,
-            name: "Biztoc.com",
-          },
-          author: "bloomberg.com",
-          title:
-            "Harsh Reality of US Deal Stirs EU Soul-Searching Over Lost Clout",
-          description: "",
-          url: "https://biztoc.com/x/e59808d75c659540",
-          urlToImage: "https://biztoc.com/cdn/e59808d75c659540_s.webp",
-          publishedAt: "2025-07-29T12:51:10Z",
-          content:
-            "{ window.open(this.href, '_blank'); }, 200); return false;\"&gt;Why did Novo Nordisk shares plunge? { window.open(this.href, '_blank'); }, 200); return false;\"&gt;How will US-EU trade deal affect tari… [+724 chars]",
-        },
       ],
       loading: false,
     };

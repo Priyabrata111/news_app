@@ -1466,6 +1466,13 @@ export class News extends Component {
       loading: false,
     };
   }
+  async componentDidMount() {
+    let url =
+      "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=0a479ee774dc41d586c8ed26b678102e";
+    let data = await fetch(url);
+    let parsedData = data.json();
+    console.log(parsedData);
+  }
 
   render() {
     return (

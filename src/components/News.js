@@ -4,9 +4,8 @@ import NewsIntem from "./NewsIntem";
 export class News extends Component {
   constructor() {
     super();
-    console.log("I am a constructor from News component");
     this.state = {
-      articles: [],
+      articles: this.articles,
       loading: false,
     };
   }
@@ -14,8 +13,8 @@ export class News extends Component {
     let url =
       "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=0a479ee774dc41d586c8ed26b678102e";
     let data = await fetch(url);
-    let parsedData = data.json();
-    console.log(parsedData);
+    let parsedData = await data.json();
+
     this.setState({ articles: parsedData.articles });
   }
 

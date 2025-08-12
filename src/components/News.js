@@ -5,7 +5,7 @@ export class News extends Component {
   constructor() {
     super();
     this.state = {
-      articles: [],
+      articles: this.articles,
       loading: false,
     };
   }

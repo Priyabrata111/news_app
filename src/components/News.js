@@ -7,11 +7,12 @@ export class News extends Component {
     this.state = {
       articles: this.articles,
       loading: false,
+      page: 1,
     };
   }
   async componentDidMount() {
     let url =
-      "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=0a479ee774dc41d586c8ed26b678102e";
+      "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=0a479ee774dc41d586c8ed26b678102e&page=1";
     let data = await fetch(url);
     let parsedData = await data.json();
 
@@ -36,6 +37,14 @@ export class News extends Component {
                 </div>
               );
             })}
+        </div>
+        <div className="container d-flex justify-content-between">
+          <button type="button" class="btn btn-primary">
+            Previous
+          </button>
+          <button type="button" class="btn btn-primary">
+            Next
+          </button>
         </div>
       </div>
     );

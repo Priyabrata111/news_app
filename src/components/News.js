@@ -43,7 +43,7 @@ export class News extends Component {
             Previous
           </button>
           <button type="button" class="btn btn-primary">
-            Next
+            Next ...
           </button>
         </div>
       </div>

@@ -8,22 +8,41 @@ export class News extends Component {
       articles: this.articles,
       loading: false,
       page: 1,
+      pageSize: 9,
     };
   }
   async componentDidMount() {
     let url =
-      "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=0a479ee774dc41d586c8ed26b678102e&page=1";
+      "https://newsapi.org/v2/everything?domains=wsj.com&apiKey=0a479ee774dc41d586c8ed26b678102e&page=1&pageSize=9";
     let data = await fetch(url);
     let parsedData = await data.json();
 
     this.setState({ articles: parsedData.articles });
   }
 
-  handleNextClick = () => {
-    console.log("Next");
+  handleNextClick = async () => {
+    let url = `https://newsapi.org/v2/everything?domains=wsj.com&apiKey=0a479ee774dc41d586c8ed26b678102e&page=${
+      this.state.page + 1
+    }&pageSize=${this.state.pageSize}`;
+    let data = await fetch(url);
+    let parsedData = await data.json();
+
+    this.setState({
+      articles: parsedData.articles,
+      page: this.state.page + 1,
+    });
   };
-  handlePrevClick = () => {
-    console.log("Previous");
+  handlePrevClick = async () => {
+    let url = `https://newsapi.org/v2/everything?domains=wsj.com&apiKey=0a479ee774dc41d586c8ed26b678102e&page=${
+      this.state.page - 1
+    }&pageSize=${this.state.pageSize}`;
+    let data = await fetch(url);
+    let parsedData = await data.json();
+
+    this.setState({
+      articles: parsedData.articles,
+      page: this.state.page - 1,
+    });
   };
 
   render() {
@@ -37,7 +56,11 @@ export class News extends Component {
                 <div className="col-md-4">
                   <NewsIntem
                     title={ele.title ? ele.title.slice(0, 45) : ele.title}
-                    description={ele.description.slice(0, 88)}
+                    description={
+                      ele.description
+                        ? ele.description.slice(0, 88)
+                        : ele.description
+                    }
                     imgurl={ele.urlToImage}
                     newsurl={ele.url}
                   />

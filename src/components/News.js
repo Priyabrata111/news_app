@@ -8,13 +8,12 @@ export class News extends Component {
       articles: this.articles,
       loading: false,
       page: 1,
-      pageSize: 9,
+      //pageSize: this.props.pageSize,
       totalResults: this.totalResults,
     };
   }
   async componentDidMount() {
-    let url =
-      "https://newsapi.org/v2/everything?domains=wsj.com&apiKey=0a479ee774dc41d586c8ed26b678102e&page=1&pageSize=9";
+    let url = `https://newsapi.org/v2/everything?domains=wsj.com&apiKey=0a479ee774dc41d586c8ed26b678102e&page=1&pageSize=${this.props.pageSize}`;
     let data = await fetch(url);
     let parsedData = await data.json();
 
@@ -22,28 +21,27 @@ export class News extends Component {
       articles: parsedData.articles,
       totalResults: parsedData.totalResults,
     });
+    console.log(this.props.pageSize);
+    // console.log(this.state.pageSize);
   }
 
   handleNextClick = async () => {
-    if (this.state.page + 1 > Math.ceil(this.state.totalResults / 9)) {
-    } else {
-      let url = `https://newsapi.org/v2/everything?domains=wsj.com&apiKey=0a479ee774dc41d586c8ed26b678102e&page=${
-        this.state.page + 1
-      }&pageSize=${this.state.pageSize}`;
-      let data = await fetch(url);
-      let parsedData = await data.json();
+    let url = `https://newsapi.org/v2/everything?domains=wsj.com&apiKey=0a479ee774dc41d586c8ed26b678102e&page=${
+      this.state.page + 1
+    }&pageSize=${this.props.pageSize}`;
+    let data = await fetch(url);
+    let parsedData = await data.json();
 
-      this.setState({
-        articles: parsedData.articles,
-        page: this.state.page + 1,
-        totalResults: parsedData.totalResults,
-      });
-    }
+    this.setState({
+      articles: parsedData.articles,
+      page: this.state.page + 1,
+      totalResults: parsedData.totalResults,
+    });
   };
   handlePrevClick = async () => {
     let url = `https://newsapi.org/v2/everything?domains=wsj.com&apiKey=0a479ee774dc41d586c8ed26b678102e&page=${
       this.state.page - 1
-    }&pageSize=${this.state.pageSize}`;
+    }&pageSize=${this.props.pageSize}`;
     let data = await fetch(url);
     let parsedData = await data.json();
 
@@ -57,7 +55,7 @@ export class News extends Component {
   render() {
     return (
       <div className="container my-3">
-        <h1>Please Visit Our Top News Headlines</h1>
+        <h1 className="text-center">Please Visit Our Top News Headlines</h1>
         <div className="row">
           {this.state.articles &&
             this.state.articles.map((ele) => {
@@ -90,6 +88,10 @@ export class News extends Component {
             type="button"
             class="btn btn-dark"
             onClick={this.handleNextClick}
+            disabled={
+              this.state.page + 1 >
+              Math.ceil(this.state.totalResults / this.props.pageSize)
+            }
           >
             Next &rarr;
           </button>

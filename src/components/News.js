@@ -1,25 +1,27 @@
 import React, { Component } from "react";
 import NewsIntem from "./NewsIntem";
+import Spinner from "./Spinner";
 
 export class News extends Component {
   constructor() {
     super();
     this.state = {
       articles: this.articles,
-      loading: false,
+      loading: true,
       page: 1,
-      //pageSize: this.props.pageSize,
       totalResults: this.totalResults,
     };
   }
   async componentDidMount() {
     let url = `https://newsapi.org/v2/everything?domains=wsj.com&apiKey=0a479ee774dc41d586c8ed26b678102e&page=1&pageSize=${this.props.pageSize}`;
+    this.setState({ loading: true });
     let data = await fetch(url);
     let parsedData = await data.json();
 
     this.setState({
       articles: parsedData.articles,
       totalResults: parsedData.totalResults,
+      loading: false,
     });
     console.log(this.props.pageSize);
     // console.log(this.state.pageSize);
@@ -29,6 +31,7 @@ export class News extends Component {
     let url = `https://newsapi.org/v2/everything?domains=wsj.com&apiKey=0a479ee774dc41d586c8ed26b678102e&page=${
       this.state.page + 1
     }&pageSize=${this.props.pageSize}`;
+    this.setState({ loading: true });
     let data = await fetch(url);
     let parsedData = await data.json();
 
@@ -36,12 +39,14 @@ export class News extends Component {
       articles: parsedData.articles,
       page: this.state.page + 1,
       totalResults: parsedData.totalResults,
+      loading: false,
     });
   };
   handlePrevClick = async () => {
     let url = `https://newsapi.org/v2/everything?domains=wsj.com&apiKey=0a479ee774dc41d586c8ed26b678102e&page=${
       this.state.page - 1
     }&pageSize=${this.props.pageSize}`;
+    this.setState({ loading: true });
     let data = await fetch(url);
     let parsedData = await data.json();
 
@@ -49,6 +54,7 @@ export class News extends Component {
       articles: parsedData.articles,
       page: this.state.page - 1,
       totalResults: parsedData.totalResults,
+      loading: false,
     });
   };
 
@@ -56,6 +62,7 @@ export class News extends Component {
     return (
       <div className="container my-3">
         <h1 className="text-center">Please Visit Our Top News Headlines</h1>
+        {this.state.loading && <Spinner />}
         <div className="row">
           {this.state.articles &&
             this.state.articles.map((ele) => {

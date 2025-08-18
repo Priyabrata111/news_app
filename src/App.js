@@ -2,17 +2,50 @@ import "./App.css";
 import React, { Component } from "react";
 import NavBar from "./components/NavBar";
 import News from "./components/News";
-import { Route, Routes } from "react-router";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 export default class App extends Component {
   render() {
     return (
-      <div>
-        <Routes>
+      <Router>
+        <div>
           <NavBar />
-          <News pageSize={6} />
-        </Routes>
-      </div>
+          <Routes>
+            <Route
+              path="/"
+              element={<News pageSize={6} category="general" />}
+            />
+            <Route
+              path="/general"
+              element={<News pageSize={6} category="general" />}
+            />
+            <Route
+              path="/entertainment"
+              element={<News pageSize={6} category="entertainment" />}
+            />
+            <Route
+              path="/sports"
+              element={<News pageSize={6} category="sports" />}
+            />
+            <Route
+              path="/science"
+              element={<News pageSize={6} category="science" />}
+            />
+            <Route
+              path="/business"
+              element={<News pageSize={6} category="business" />}
+            />
+            <Route
+              path="/health"
+              element={<News pageSize={6} category="health" />}
+            />
+            <Route
+              path="/technology"
+              element={<News pageSize={6} category="technology" />}
+            />
+          </Routes>
+        </div>
+      </Router>
     );
   }
 }

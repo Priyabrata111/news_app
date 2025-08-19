@@ -13,35 +13,43 @@ export default class App extends Component {
           <Routes>
             <Route
               path="/"
-              element={<News pageSize={6} category="general" />}
+              element={<News key="gen" pageSize={6} category="general" />}
             />
             <Route
               path="/general"
-              element={<News pageSize={6} category="general" />}
+              element={<News key="general" pageSize={6} category="general" />}
             />
             <Route
               path="/entertainment"
-              element={<News pageSize={6} category="entertainment" />}
+              element={
+                <News
+                  key="entertainment"
+                  pageSize={6}
+                  category="entertainment"
+                />
+              }
             />
             <Route
               path="/sports"
-              element={<News pageSize={6} category="sports" />}
+              element={<News key="sports" pageSize={6} category="sports" />}
             />
             <Route
               path="/science"
-              element={<News pageSize={6} category="science" />}
+              element={<News key="science" pageSize={6} category="science" />}
             />
             <Route
               path="/business"
-              element={<News pageSize={6} category="business" />}
+              element={<News key="business" pageSize={6} category="business" />}
             />
             <Route
               path="/health"
-              element={<News pageSize={6} category="health" />}
+              element={<News key="health" pageSize={6} category="health" />}
             />
             <Route
               path="/technology"
-              element={<News pageSize={6} category="technology" />}
+              element={
+                <News key="technology" pageSize={6} category="technology" />
+              }
             />
           </Routes>
         </div>

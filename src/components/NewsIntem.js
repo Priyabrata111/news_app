@@ -10,6 +10,11 @@ export class NewsIntem extends Component {
           <div className="card-body">
             <h5 className="card-title">{title}...</h5>
             <p className="card-text">{description}...</p>
+            <p className="card-text">
+              <small className="text-muted">
+                By {author} on {date}
+              </small>
+            </p>
             <a
               href={newsurl}
               target="_blank"

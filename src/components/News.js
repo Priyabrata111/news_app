@@ -14,14 +14,24 @@ export class News extends Component {
     pageSize: PropTypes.number,
     category: PropTypes.string,
   };
-  constructor() {
-    super();
+  capitalize = (val) => {
+    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+  };
+  dummyNews = {
+    title: "",
+    description: "",
+    imgurl: "",
+    url: "",
+  };
+  constructor(props) {
+    super(props);
     this.state = {
       articles: this.articles,
       loading: true,
       page: 1,
       totalResults: this.totalResults,
     };
+    document.title = `${this.capitalize(this.props.category)} - NewsApp`;
   }
   async updateNews() {
     const url = `https://newsapi.org/v2/top-headlines?category=${this.props.category}&apiKey=0a479ee774dc41d586c8ed26b678102e&page=${this.state.page}&pageSize=${this.props.pageSize}`;

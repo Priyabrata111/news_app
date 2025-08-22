@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NewsIntem from "./NewsIntem";
 import Spinner from "./Spinner";
+import ImgNotFound from "./ImgNotFound";
 import PropTypes from "prop-types";
 
 export class News extends Component {
@@ -18,10 +19,11 @@ export class News extends Component {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
   };
   dummyNews = {
-    title: "",
-    description: "",
-    imgurl: "",
-    url: "",
+    title: "Title is not available for this News",
+    description:
+      "The Description for this News is not available. Please visit the link below to know more",
+    imgurl: {<ImgNotFound/>},
+    url: "https://unsplash.com/photos/jVb0mSn0LbE",
   };
   constructor(props) {
     super(props);
@@ -38,6 +40,7 @@ export class News extends Component {
     this.setState({ loading: true });
     let data = await fetch(url);
     let parsedData = await data.json();
+    console.log(parsedData);
 
     this.setState({
       articles: parsedData.articles,
@@ -83,14 +86,18 @@ export class News extends Component {
               return (
                 <div className="col-md-4">
                   <NewsIntem
-                    title={ele.title ? ele.title.slice(0, 45) : ele.title}
+                    title={
+                      ele.title ? ele.title.slice(0, 45) : this.dummyNews.title
+                    }
                     description={
                       ele.description
                         ? ele.description.slice(0, 88)
-                        : ele.description
+                        : this.dummyNews.description
                     }
-                    imgurl={ele.urlToImage}
-                    newsurl={ele.url}
+                    imgurl={
+                      ele.urlToImage ? ele.urlToImage : this.dummyNews.imgurl
+                    }
+                    newsurl={ele.url ? ele.url : this.dummyNews.url}
                     author={ele.author}
                     date={ele.publishedAt}
                     source={ele.source.name}

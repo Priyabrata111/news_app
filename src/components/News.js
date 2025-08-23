@@ -3,6 +3,7 @@ import NewsIntem from "./NewsIntem";
 import Spinner from "./Spinner";
 import ImgNotFound from "./404_not_found.png";
 import PropTypes from "prop-types";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export class News extends Component {
   static defaultProps = {
@@ -31,7 +32,7 @@ export class News extends Component {
       articles: this.articles,
       loading: true,
       page: 1,
-      totalResults: this.totalResults,
+      totalResults: 0,
     };
     document.title = `${this.capitalize(this.props.category)} - NewsApp`;
   }
@@ -81,55 +82,42 @@ export class News extends Component {
           You are visiting top headlines from{" "}
           {this.capitalize(this.props.category)}
         </h1>
-        {this.state.loading && <Spinner />}
-        <div className="row">
-          {!this.state.loading &&
-            this.state.articles &&
-            this.state.articles.map((ele) => {
-              return (
-                <div className="col-md-4">
-                  <NewsIntem
-                    title={
-                      ele.title ? ele.title.slice(0, 45) : this.dummyNews.title
-                    }
-                    description={
-                      ele.description
-                        ? ele.description.slice(0, 88)
-                        : this.dummyNews.description
-                    }
-                    imgurl={
-                      ele.urlToImage ? ele.urlToImage : this.dummyNews.imgurl
-                    }
-                    newsurl={ele.url ? ele.url : this.dummyNews.url}
-                    author={ele.author}
-                    date={ele.publishedAt}
-                    source={ele.source.name}
-                  />
-                </div>
-              );
-            })}
-        </div>
-        <div className="container d-flex justify-content-between">
-          <button
-            type="button"
-            class="btn btn-dark"
-            disabled={this.state.page <= 1}
-            onClick={this.handlePrevClick}
-          >
-            &larr; Previous
-          </button>
-          <button
-            type="button"
-            class="btn btn-dark"
-            onClick={this.handleNextClick}
-            disabled={
-              this.state.page + 1 >
-              Math.ceil(this.state.totalResults / this.props.pageSize)
-            }
-          >
-            Next &rarr;
-          </button>
-        </div>
+
+        <InfiniteScroll
+          dataLength={this.state.totalResults}
+          next={this.fetchMoreData}
+          hasMore={true}
+          loader={<Spinner />}
+        >
+          <div className="row">
+            {this.state.articles &&
+              this.state.articles.map((ele) => {
+                return (
+                  <div className="col-md-4">
+                    <NewsIntem
+                      title={
+                        ele.title
+                          ? ele.title.slice(0, 45)
+                          : this.dummyNews.title
+                      }
+                      description={
+                        ele.description
+                          ? ele.description.slice(0, 88)
+                          : this.dummyNews.description
+                      }
+                      imgurl={
+                        ele.urlToImage ? ele.urlToImage : this.dummyNews.imgurl
+                      }
+                      newsurl={ele.url ? ele.url : this.dummyNews.url}
+                      author={ele.author}
+                      date={ele.publishedAt}
+                      source={ele.source.name}
+                    />
+                  </div>
+                );
+              })}
+          </div>
+        </InfiniteScroll>
       </div>
     );
   }

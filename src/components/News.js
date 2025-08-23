@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import NewsIntem from "./NewsIntem";
 import Spinner from "./Spinner";
-import ImgNotFound from "./ImgNotFound";
+import ImgNotFound from "./404_not_found.png";
 import PropTypes from "prop-types";
 
 export class News extends Component {
@@ -22,7 +22,7 @@ export class News extends Component {
     title: "Title is not available for this News",
     description:
       "The Description for this News is not available. Please visit the link below to know more",
-    imgurl: {<ImgNotFound/>},
+    imgurl: ImgNotFound,
     url: "https://unsplash.com/photos/jVb0mSn0LbE",
   };
   constructor(props) {

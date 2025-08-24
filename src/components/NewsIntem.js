@@ -6,14 +6,18 @@ export class NewsIntem extends Component {
       this.props;
     return (
       <div className="my-3">
-        <div className="card" style={{ width: "18rem" }}>
-          <span
-            class="position-absolute top-0 translate-middle badge rounded-pill bg-danger"
-            style={{ zIndex: "1", left: "90%" }}
+        <div className="card">
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              postion: "absolute",
+              right: "0",
+            }}
           >
-            {source}
-            <span className="visually-hidden">unread messages</span>
-          </span>
+            <span className="badge rounded-pill bg-danger">{source}</span>
+          </div>
+
           <img src={imgurl} className="card-img-top" alt="..." />
           <div className="card-body">
             <h5 className="card-title">{title}...</h5>

@@ -12,7 +12,7 @@ export class NewsIntem extends Component {
             style={{ zIndex: "1", left: "90%" }}
           >
             {source}
-            <span class="visually-hidden">unread messages</span>
+            <span className="visually-hidden">unread messages</span>
           </span>
           <img src={imgurl} className="card-img-top" alt="..." />
           <div className="card-body">

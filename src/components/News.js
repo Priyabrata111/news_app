@@ -33,6 +33,7 @@ export class News extends Component {
       loading: true,
       page: 1,
       totalResults: 0,
+      hasMore: true,
     };
     document.title = `${this.capitalize(this.props.category)} - NewsApp`;
   }
@@ -54,13 +55,20 @@ export class News extends Component {
     this.setState({ loading: false, page: this.state.page + 1 });
     let data = await fetch(url);
     let parsedData = await data.json();
-    console.log(parsedData);
+    //console.log(parsedData);
+    if (parsedData.articles.length === 0) {
+      this.setState({
+        hasMore: false,
+      });
+    }
 
     this.setState({
       articles: this.state.articles.concat(parsedData.articles || []),
       totalResults: parsedData.totalResults,
       loading: false,
     });
+    // console.log(" total Results = " + this.state.totalResults);
+    //console.log(" articles length = " + this.state.articles.length);
   };
 
   render() {
@@ -70,12 +78,11 @@ export class News extends Component {
           You are visiting top headlines from{" "}
           {this.capitalize(this.props.category)}
         </h1>
-        {this.state.loading && <Spinner />}
 
         <InfiniteScroll
           dataLength={this.state.articles.length}
           next={this.fetchMoreData}
-          hasMore={this.state.articles.length !== this.state.totalResults}
+          hasMore={this.state.hasMore}
           loader={<Spinner />}
         >
           <div className="container">

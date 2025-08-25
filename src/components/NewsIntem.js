@@ -13,6 +13,7 @@ export class NewsIntem extends Component {
               justifyContent: "flex-end",
               postion: "absolute",
               right: "0",
+              border: "2px solid white",
             }}
           >
             <span className="badge rounded-pill bg-danger">{source}</span>

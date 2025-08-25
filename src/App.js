@@ -9,11 +9,10 @@ export default class App extends Component {
   pageSize = 6;
   state = {
     progress: 0,
-    apiKey: process.env.NEWS_API_KEY,
+    apiKey: process.env.REACT_APP_NEWS_API_KEY,
   };
   setProgress = (progress) => {
     this.setState({ progress });
-    console.log(this.state.progress);
   };
   render() {
     return (

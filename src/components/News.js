@@ -1,42 +1,31 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import NewsIntem from "./NewsIntem";
 import Spinner from "./Spinner";
 import ImgNotFound from "./404_not_found.png";
 import PropTypes from "prop-types";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-export class News extends Component {
-  static defaultProps = {
-    country: "us",
-    pageSize: 6,
-    category: "general",
-  };
-  static propTypes = {
-    country: PropTypes.string,
-    pageSize: PropTypes.number,
-    category: PropTypes.string,
-  };
+const News = ()=> {
+
+  const[articles,setArticles] = useState([]);
+  const[loading,setLoading] = useState(true);
+  const[page,setPage] = useState(1);
+  const[totalResults,setTotalResults] = useState(0);
+  const[hasMore,setHasMore] = useState(true);
+
+  //document.title = `${this.capitalize(this.props.category)} - NewsApp`;
+
   capitalize = (val) => {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
   };
-  dummyNews = {
+  const dummyNews = {
     title: "Title is not available for this News",
     description:
       "The Description for this News is not available. Please visit the link below to know more",
     imgurl: ImgNotFound,
     url: "https://unsplash.com/photos/jVb0mSn0LbE",
   };
-  constructor(props) {
-    super(props);
-    this.state = {
-      articles: [],
-      loading: true,
-      page: 1,
-      totalResults: 0,
-      hasMore: true,
-    };
-    document.title = `${this.capitalize(this.props.category)} - NewsApp`;
-  }
+
 
   async componentDidMount() {
     this.props.setProgress(0);
@@ -126,5 +115,15 @@ export class News extends Component {
     );
   }
 }
+News.propTypes = {
+    country: PropTypes.string,
+    pageSize: PropTypes.number,
+    category: PropTypes.string,
+  };
+News.defaultProps = {
+    country: "us",
+    pageSize: 6,
+    category: "general",
+  };
 
 export default News;

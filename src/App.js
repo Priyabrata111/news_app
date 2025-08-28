@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import NavBar from "./components/NavBar";
 import News from "./components/News";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -22,7 +22,7 @@ const App = () => {
             element={
               <News
                 apiKey={apiKey}
-                setProgress={setProgress(progress)}
+                setProgress={setProgress}
                 key="gen"
                 pageSize={pageSize}
                 category="general"
@@ -35,7 +35,7 @@ const App = () => {
             element={
               <News
                 apiKey={apiKey}
-                setProgress={setProgress(progress)}
+                setProgress={setProgress}
                 key="general"
                 pageSize={pageSize}
                 category="general"
@@ -48,7 +48,7 @@ const App = () => {
             element={
               <News
                 apiKey={apiKey}
-                setProgress={setProgress(progress)}
+                setProgress={setProgress}
                 key="entertainment"
                 pageSize={pageSize}
                 category="entertainment"
@@ -61,7 +61,7 @@ const App = () => {
             element={
               <News
                 apiKey={apiKey}
-                setProgress={setProgress(progress)}
+                setProgress={setProgress}
                 key="sports"
                 pageSize={pageSize}
                 category="sports"
@@ -74,7 +74,7 @@ const App = () => {
             element={
               <News
                 apiKey={apiKey}
-                setProgress={setProgress(progress)}
+                setProgress={setProgress}
                 key="science"
                 pageSize={pageSize}
                 category="science"
@@ -87,7 +87,7 @@ const App = () => {
             element={
               <News
                 apiKey={apiKey}
-                setProgress={setProgress(progress)}
+                setProgress={setProgress}
                 key="business"
                 pageSize={pageSize}
                 category="business"
@@ -100,7 +100,7 @@ const App = () => {
             element={
               <News
                 apiKey={apiKey}
-                setProgress={setProgress(progress)}
+                setProgress={setProgress}
                 key="health"
                 pageSize={pageSize}
                 category="health"
@@ -113,7 +113,7 @@ const App = () => {
             element={
               <News
                 apiKey={apiKey}
-                setProgress={setProgress(progress)}
+                setProgress={setProgress}
                 key="technology"
                 pageSize={pageSize}
                 category="technology"

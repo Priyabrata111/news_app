@@ -66,7 +66,7 @@ const News = (props) => {
 
   return (
     <>
-      <h1 className="text-center">
+      <h1 className="text-center" style={{ marginTop: "90px" }}>
         You are visiting top headlines from {capitalize(props.category)}
       </h1>
 
